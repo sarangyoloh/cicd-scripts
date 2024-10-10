@@ -14,7 +14,16 @@ jobs:
         run: |
           git clone https://github.com/sarangyoloh/cicd-feasibility-check.git
           cd cicd-feasibility-check
-          git checkout develop        
+          git checkout develop
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Run Python Script to Parse JSON
+        run: |
+          python script.py
 
       - name: list files
         run: |
