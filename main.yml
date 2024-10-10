@@ -13,6 +13,8 @@ jobs:
       - name: clone the code
         run: |
           git clone https://github.com/sarangyoloh/cicd-feasibility-check.git
+          cd cicd-feasibility-check
+          git checkout develop
 
       - name: list files
         run: |
