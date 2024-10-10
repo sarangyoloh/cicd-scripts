@@ -16,6 +16,16 @@ jobs:
           cd cicd-feasibility-check
           git checkout develop
 
+      - name: build the parent lambda
+        run: |
+          cd  cicd-feasibility-check/parent-lambda
+          mvn clean install
+
+      - name: build the child lambda
+        run: |
+          cd cicd-feasibility-check/dep-lambda
+          mvn clean package
+
       - name: list files
         run: |
           pwd
