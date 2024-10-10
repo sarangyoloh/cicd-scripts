@@ -14,19 +14,10 @@ jobs:
         run: |
           git clone https://github.com/sarangyoloh/cicd-feasibility-check.git
           cd cicd-feasibility-check
-          git checkout develop
-
-      - name: build the parent lambda
-        run: |
-          cd  cicd-feasibility-check/parent-lambda
-          mvn clean install
-
-      - name: build the child lambda
-        run: |
-          cd cicd-feasibility-check/dep-lambda
-          mvn clean package
+          git checkout develop        
 
       - name: list files
         run: |
           pwd
           ls
+          cat cli_commands.json
