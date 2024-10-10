@@ -1,0 +1,14 @@
+   - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Run Python Script to Parse JSON
+        run: |
+          python ./cicd/script.py
+
+      - name: Read the output.json content
+        run: |
+          ls
+          ls cicd
+          cat ./output.json

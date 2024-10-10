@@ -1,0 +1,20 @@
+{
+  "create": [
+    { "deps_lamba_function": { "create_alias": true, "create_version": true } }
+  ],
+  "update_code": [],
+  "update_config": [],
+  "config": {
+    "deps_lambda_function": {
+      "function-name": "deps_lambda_function_demo",
+      "handler": "org.deps.DepsHandler::handleRequest",
+      "role": "arn:aws:iam::211125348661:role/yoloh-lambda-IAMRole-sit",
+      "timeout": 300,
+      "memory-size": 1024,
+      "environment": {
+        "secret_arn": "arn:aws:secretsmanager:us-west-2:320438996970:secret:yoloh-secrets-uat1-SfhAvy"
+      },
+      "project_dir": "deps_lambda"
+    }
+  }
+}

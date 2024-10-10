@@ -1,0 +1,20 @@
+name: cicd feasibility check
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: clone the code
+        run: |
+          git clone https://github.com/sarangyoloh/cicd-feasibility-check.git
+
+      - name: list files
+        run: |
+          pwd
+          ls

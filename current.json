@@ -1,0 +1,11 @@
+{
+  "create_function": ["deps_lambda_function"],
+  "update_function_code": ["lambda_name"],
+  "update_function_config": [
+    {
+      "deps_lambda_function": ["environment", "vpc-config", "memory", "timeout"]
+    }
+  ],
+  "create_alias": ["deps_lambda_function"],
+  "update_alias": ["deps_lambda_function"]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "description": "creating the function x",
+    "command": "aws lambda create-function "
+  },
+  {
+    "description": "updating the function code for y",
+    "command": "aws lambda update-code"
+  },
+  {
+    "description": "update the function config",
+    "command": "aws lambda update-configuration"
+  }
+]
