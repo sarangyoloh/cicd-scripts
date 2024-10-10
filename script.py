@@ -57,7 +57,9 @@ def aws_cli_create_function_command_gen(lambda_config_detail):
             project_dir = lambda_config_detail.get("project_dir")
             if (project_dir not in build_proj_names):
                 jar_path = package_child_build(project_dir)
-                # add a command to deploy jar to s3
+                create_cmd['description'] = f"deploying the jar present in path: {jar_path}"
+                create_cmd['cmd'] = f"aws s3 cp {jar_path} s3://<Bucket>/<Key>"
+                cli_commands.append(create_cmd)
                 build_proj_names[f"{project_dir}"] = jar_path
         config_val = lambda_config_detail.get(config_key)
         if config_key != "function-alias" and config_key != "function-version" and config_key != "project_dir":
@@ -73,7 +75,7 @@ def install_parent_build():
 def package_child_build(project_dir):
     os.system(f"mvn clean package -f cicd-feasibility-check/{project_dir}")
     target_dir = f"cicd-feasibility-check/{project_dir}/target"
-    result = "somepath"
+    result = ""
     for fn in os.listdir(target_dir):
        full_path = os.path.join(target_dir, fn)
        if fn.startswith(project_dir) and os.path.isfile(full_path):
