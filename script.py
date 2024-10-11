@@ -42,6 +42,7 @@ def apply_file_reader(content):
 def update_function_code_reader(update_function_code):
     if not is_parent_built:
         install_parent_build()
+        global is_parent_built
         is_parent_built = True
 
     for logical_id in update_function_code:
@@ -49,6 +50,7 @@ def update_function_code_reader(update_function_code):
 
 def create_function_reader(create_function):
     install_parent_build()
+    global is_parent_built
     is_parent_built = True
     
     for logical_id in create_function:
