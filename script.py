@@ -36,25 +36,29 @@ def parse_json(file_path):
             return None
 
 def apply_file_reader(content):
+    global is_parent_built
+    is_parent_built = False
     create_function_reader(content["create_function"])
     update_function_code_reader(content["update_function_code"])
 
 def update_function_code_reader(update_function_code):
-    if not is_parent_built:
-        install_parent_build()
-        global is_parent_built
-        is_parent_built = True
+    if(len(update_function_code) > 0): 
+        if not is_parent_built:
+            install_parent_build()
+            global is_parent_built
+            is_parent_built = True
 
     for logical_id in update_function_code:
         aws_cli_update_code_cmd_gen(get_lambda_config_detail(logical_id))
 
 def create_function_reader(create_function):
-    install_parent_build()
-    global is_parent_built
-    is_parent_built = True
-    
-    for logical_id in create_function:
-        aws_cli_create_function_cmd_gen(get_lambda_config_detail(logical_id))
+    if(len(create_function) > 0):
+        install_parent_build()
+        global is_parent_built
+        is_parent_built = True
+
+        for logical_id in create_function:
+            aws_cli_create_function_cmd_gen(get_lambda_config_detail(logical_id))
         
 def get_lambda_config_detail(config_name):
     if is_logical_id_present(config_name):
@@ -81,7 +85,7 @@ def aws_cli_update_code_cmd_gen(lambda_config_detail):
 
     update_code_cmd['description'] = f"updating the function code for {lambda_config_detail.get("function-name")}"
     update_code_cmd['cmd'] = cmd
-    cli_commands.append(update_code_cmd)
+    cli_commands.append(update_code_cmd.copy())
 
 def aws_cli_create_function_cmd_gen(lambda_config_detail):
     create_cmd = {}
