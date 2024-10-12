@@ -36,8 +36,6 @@ def parse_json(file_path):
             return None
 
 def apply_file_reader(content):
-    global is_parent_built
-    is_parent_built = False
     create_function_reader(content["create_function"])
     update_function_code_reader(content["update_function_code"])
 
