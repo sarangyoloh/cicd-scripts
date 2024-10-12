@@ -132,7 +132,7 @@ def argument_appender(cmd, config_key, config_val):
     return cmd + f' --{config_key} {config_val}'
 
 def comma_sep_argument_appender(cmd, config_key, args):
-    cmd = cmd + f" =={config_key} "
+    cmd = cmd + f" --{config_key} "
     for key, val in args.items():
         cmd = cmd + key + "=" + val + ","
     return cmd[:-1]
